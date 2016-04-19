@@ -1,0 +1,5 @@
+secret-key.txt
+__pycache__
+.idea
+*.db
+*.py[cod]
