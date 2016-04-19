@@ -91,18 +91,6 @@ AUTHENTICATION_BACKENDS = (
 # ######## END AUTHENTICATION BACKENDS
 
 
-# ######### REDIS CACHE AND SESSION HANDLING
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': '/var/run/redis/redis.sock'
-    }
-}
-
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-# ######### END REDIS CACHE AND SESSION HANDLING
-
-
 # ######### URL CONFIGURATION
 ROOT_URLCONF = '%s.urls' % SITE_NAME
 # ######### END URL CONFIGURATION
