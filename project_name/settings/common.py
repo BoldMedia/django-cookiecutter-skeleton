@@ -85,7 +85,6 @@ MIDDLEWARE_CLASSES = DJANGO_MIDDLEWARE_CLASSES + LOCAL_MIDDLEWARE_CLASSES
 
 # ######## AUTHENTICATION BACKENDS
 AUTHENTICATION_BACKENDS = (
-    'apps.user_management.backends.IdModelBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 # ######## END AUTHENTICATION BACKENDS
