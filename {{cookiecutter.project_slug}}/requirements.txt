@@ -1,0 +1,11 @@
+django-debug-toolbar==1.7
+django-braces==1.11.0
+psycopg2==2.7
+Django==1.11
+django-redis==4.8.0
+redis==2.10
+django-environ==0.4
+whitenoise==3.3.0
+brotlipy==0.6.0
+{% if cookiecutter.use_cas_auth.lower() == 'y' %}django-cas-ng==3.5.4
+python-cas==1.1.0{% endif %}

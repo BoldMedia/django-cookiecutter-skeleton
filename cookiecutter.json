@@ -1,0 +1,7 @@
+{
+  "project_name": "Project Name",
+  "project_slug": "{{cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')}}",
+  "author_name": "Your Name",
+  "author_email": "Your Email Address",
+  "use_cas_auth": "y"
+}
