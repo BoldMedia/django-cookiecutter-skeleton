@@ -12,9 +12,9 @@ This project is a [cookiecutter](https://github.com/audreyr/cookiecutter) skelet
 
 ## Features
 
-* Django 1.11 [x]
-* Django Debug Toolbar [x]
-* PostgreSQL Support (psycopg2) [x]
+* Django 1.11
+* Django Debug Toolbar
+* PostgreSQL Support (psycopg2)
 * Redis Caching Layer (django-redis + py-redis) [WIP]
 * DotEnv Configuration (django-environ) [WIP]
-* Extended Staticfile Support (whitenoise) [x]
+* Extended Staticfile Support (whitenoise)
