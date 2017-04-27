@@ -10,7 +10,7 @@ This project is a [cookiecutter](https://github.com/audreyr/cookiecutter) skelet
 * Author Email
 * Use CAS Authentication?
 
-## Features
+## Django Project Features
 
 * Django 1.11
 * Django Debug Toolbar
