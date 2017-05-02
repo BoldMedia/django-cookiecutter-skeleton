@@ -16,5 +16,5 @@ This project is a [cookiecutter](https://github.com/audreyr/cookiecutter) skelet
 * Django Debug Toolbar
 * PostgreSQL Support (psycopg2)
 * Redis Caching Layer (django-redis + py-redis) [WIP]
-* DotEnv Configuration (django-environ) [WIP]
+* DotEnv Configuration (django-environ)
 * Extended Staticfile Support (whitenoise)

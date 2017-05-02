@@ -1,5 +1,7 @@
 """Common settings for all environments """
 
+import environ
+
 from sys import path
 from random import choice
 from os.path import normpath, join, abspath, basename, dirname
@@ -7,7 +9,7 @@ from os.path import normpath, join, abspath, basename, dirname
 
 ##
 ## Path Settings
-#############################
+################################################################################
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 SITE_ROOT = dirname(DJANGO_ROOT)
 SITE_NAME = basename(DJANGO_ROOT)
@@ -16,28 +18,32 @@ path.append(DJANGO_ROOT)
 
 
 ##
+## Environ Settings (Load 'Er Up!)
+################################################################################
+env = environ.Env()
+environ.Env.read_env(join(SITE_ROOT, '.env'))
+
+
+##
 ## Apps Settings
-#############################
-DJANGO_APPS = [
+################################################################################
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.humanize'
-]
-THIRD_PARTY_APPS = [
+    'django.contrib.humanize',
     'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
     {% if cookiecutter.use_cas_auth.lower() == 'y' -%}
     'django_cas_ng'
     {%- endif %}
 ]
-LOCAL_APPS = []
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
 ##
 ## Authentication Settings
-#############################
+################################################################################
 LOGIN_URL = '/user/login/'
 AUTHENTICATION_BACKENDS = [
     {% if cookiecutter.use_cas_auth.lower() == 'y' -%}
@@ -62,11 +68,11 @@ CAS_FORCE_CHANGE_USERNAME_CASE = 'lower'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': ''
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASS'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default=5432)
     }
 }
 
@@ -87,41 +93,44 @@ DJANGO_MIDDLEWARE = [
 THIRD_PARTY_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware']
 LOCAL_MIDDLEWARE = []
 
-MIDDLEWARE_CLASSES = DJANGO_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE + LOCAL_MIDDLEWARE
+MIDDLEWARE = DJANGO_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE + LOCAL_MIDDLEWARE
 
 
 ##
 ## Templating Settings
-#############################
-TEMPLATE_LOADERS = [
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader'
+################################################################################
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [normpath(join(DJANGO_ROOT, 'templates'))],
+        'APP_DIRS': True,
+        'OPTIONS': {}
+    }
 ]
-TEMPLATE_DIRS = [normpath(join(DJANGO_ROOT, 'templates'))]
 
 
 ##
 ## Admins/Managers Settings
-############################
+################################################################################
 ADMINS = [['{{cookiecutter.author_name}}', '{{cookiecutter.author_email}}']]
 MANAGERS = ADMINS + []
 
 
 ##
 ## WSGI Entry Point
-############################
+################################################################################
 WSGI_APPLICATION = '{{cookiecutter.project_slug}}.wsgi.application'
 
 
 ##
 ## Root URL File Settings
-############################
+################################################################################
 ROOT_URLCONF = '%s.urls' % SITE_NAME
 
 
 ##
 ## Internationalization/Localization Settings
-############################
+################################################################################
 LANGUAGE_CODE = 'en-us'
 USE_I18N = True
 USE_L10N = True
@@ -131,7 +140,7 @@ TIME_ZONE = 'UTC'
 
 ##
 ## Secret Key Settings
-###########################
+################################################################################
 SECRET_FILE = join(DJANGO_ROOT, '..', 'secret-key.txt')
 
 # Try to load the SECRET_KEY from our SECRET_FILE. If that fails, then generate
@@ -152,20 +161,20 @@ except Exception:
 
 ##
 ## HTTPS/Security Settings
-###########################
+################################################################################
 SECURE_PROXY_SSL_HEADER = ['HTTP_X_FORWARDED_PROTO', 'https'] # Needed with Proxy
 
 
 ##
 ## HTTP Session Settings
-###########################
+################################################################################
 SESSION_COOKIE_AGE = 60 * 60 * 24
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 ##
 ## Static/Media File Settings
-###########################
+################################################################################
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
@@ -177,5 +186,5 @@ MEDIA_ROOT = join(DJANGO_ROOT, 'public', 'media')
 # Path and storage type for non-collected static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
-    join(DJANGO_ROOT, 'static')
+    join(SITE_ROOT, 'static')
 ]
