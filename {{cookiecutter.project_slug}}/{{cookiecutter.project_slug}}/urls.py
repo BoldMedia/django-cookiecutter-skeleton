@@ -1,12 +1,18 @@
+"""Root URLs Setting File """
+
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django_cas_ng.views import login, logout
 from django.conf.urls import include, url
 from django.conf import settings
+{% if cookiecutter.use_cas_auth.lower() == 'y' -%}
+from django_cas_ng.views import login, logout
+{%- endif %}
 
 
 urlpatterns = [
+    {% if cookiecutter.use_cas_auth.lower() == 'y' -%}
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout, name='logout')
+    {%- endif %}
 ]
 
 if settings.DEBUG:

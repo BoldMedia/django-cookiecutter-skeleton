@@ -27,7 +27,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'whitenoise.runserver_nostatic',
-    {% if cookiecutter.use_cas_auth.lower() == "y" -%}
+    {% if cookiecutter.use_cas_auth.lower() == 'y' -%}
     'django_cas_ng'
     {%- endif %}
 ]
