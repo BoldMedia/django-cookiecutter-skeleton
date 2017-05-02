@@ -46,8 +46,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
     {%- endif %}
 ]
-{% if cookiecutter.use_cas_auth.lower() == 'y' %}
-# CAS Configuration
+{%- if cookiecutter.use_cas_auth.lower() == 'y' %}
 CAS_SERVER_URL = ''
 CAS_IGNORE_REFERER = True
 CAS_RETRY_LOGIN = True
