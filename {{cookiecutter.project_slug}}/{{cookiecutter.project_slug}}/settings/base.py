@@ -180,8 +180,8 @@ MEDIA_URL = '/media/'
 
 # File system paths where our static and media files are found. Static files
 # are thrown there when running collectstatic
-STATIC_ROOT = join(DJANGO_ROOT, 'public', 'assets')
-MEDIA_ROOT = join(DJANGO_ROOT, 'public', 'media')
+STATIC_ROOT = join(SITE_ROOT, 'public', 'assets')
+MEDIA_ROOT = join(SITE_ROOT, 'public', 'media')
 
 # Path and storage type for non-collected static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
