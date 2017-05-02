@@ -1,10 +1,22 @@
-from .common import *
+from {{cookiecutter.project_slug}}.settings.base import *
 
 
+##
+## Debug Settings
+#############################
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-# Django Debug Toolbar Setup
+
+##
+## Allowed Hosts Settings
+#############################
+ALLOWED_HOSTS = []
+
+
+##
+## Debug Toolbar Settings
+#############################
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 INSTALLED_APPS += ['debug_toolbar']
 MIDDLEWARE_CLASSES += ['debug_toolbar.middleware.DebugToolbarMiddleware']

@@ -8,7 +8,7 @@ This project is a [cookiecutter](https://github.com/audreyr/cookiecutter) skelet
 * Project Slug
 * Author Name
 * Author Email
-* Use CAS Authentication?
+* Use CAS Authentication? [Y/n]
 
 ## Django Project Features
 
