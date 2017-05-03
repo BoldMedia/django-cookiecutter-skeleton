@@ -113,7 +113,7 @@ TEMPLATES = [
 ## Admins/Managers Settings
 ################################################################################
 ADMINS = [['{{cookiecutter.author_name}}', '{{cookiecutter.author_email}}']]
-MANAGERS = ADMINS + []
+MANAGERS = ADMINS
 
 
 ##
