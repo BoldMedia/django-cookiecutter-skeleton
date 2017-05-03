@@ -18,3 +18,4 @@ This project is a [cookiecutter](https://github.com/audreyr/cookiecutter) skelet
 * Redis Caching Layer (django-redis + py-redis) [WIP]
 * DotEnv Configuration (django-environ)
 * Extended Staticfile Support (whitenoise)
+* [Optional] CAS 2/3 Authentication Support (django-cas-ng)
